@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Ledgerly — Premium UI Frontend Template</title>
+
+  <!-- Modern Premium Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Main Responsive Container -->
+  <main class="app-container" id="app-root">
+
+    <!-- ========================================================== -->
+    <!-- 1. HOME SCREEN VIEW                                        -->
+    <!-- ========================================================== -->
+    <div id="home-view" class="app-view active">
+      <!-- Header Section -->
+      <header class="app-header">
+        <div class="header-left">
+          <h1 class="greeting">Morning, Atharv 👋</h1>
+          <p class="current-date" id="current-date">Sunday, 24 May</p>
+        </div>
+        <div class="header-right">
+          <!-- Theme Toggle -->
+          <button class="icon-btn theme-toggle-btn" id="theme-toggle" aria-label="Toggle Theme">
+            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+          <!-- Profile Avatar with Online Ring -->
+          <div class="profile-avatar">
+            <div class="avatar-ring"></div>
+            <img
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200&h=200"
+              alt="Atharv Vyas">
+            <span class="notification-indicator"></span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Scrollable Container -->
+      <div class="view-body-scroll">
+        <!-- Mini Horizontal Date Strip -->
+        <section class="date-strip-container">
+          <div class="date-strip" id="date-strip">
+            <!-- Dynamically highlighted via JS Calendar -->
+          </div>
+        </section>
+
+        <!-- Information Banner -->
+        <section class="info-banner-container">
+          <div class="info-banner animate-slide-in">
+            <div class="banner-content">
+              <span class="banner-tag">Weekly Summary</span>
+              <h2 class="banner-title" id="weekly-spent-amount">₹4,200 spent this week</h2>
+              <p class="banner-subtitle" id="weekly-spent-subtitle">
+                <span class="trend-icon">↓</span>
+                <span>12% less than average spending limit</span>
+              </p>
+            </div>
+            <div class="banner-illustration">
+              <!-- Premium Minimalist Fintech Sparkline SVG -->
+              <svg viewBox="0 0 120 60" class="sparkline" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="sparkline-grad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="var(--color-primary-yellow)" stop-opacity="0.4" />
+                    <stop offset="100%" stop-color="var(--color-primary-yellow)" stop-opacity="0.0" />
+                  </linearGradient>
+                </defs>
+                <path d="M0,45 C15,30 25,50 40,25 C55,0 70,35 85,15 C100,-5 110,18 120,5 L120,60 L0,60 Z"
+                  fill="url(#sparkline-grad)"></path>
+                <path d="M0,45 C15,30 25,50 40,25 C55,0 70,35 85,15 C100,-5 110,18 120,5" fill="none"
+                  stroke="var(--color-primary-yellow)" stroke-width="3" stroke-linecap="round"></path>
+                <circle cx="120" cy="5" r="4" fill="var(--color-primary-yellow)"></circle>
+                <circle cx="120" cy="5" r="8" fill="var(--color-primary-yellow)" opacity="0.3" class="pulse-dot">
+                </circle>
+              </svg>
+            </div>
+          </div>
+        </section>
+
+        <!-- Main Action Grid -->
+        <section class="action-grid">
+          <!-- Card 1: Trips -->
+          <div class="action-card card-trips" id="home-trips-card" tabindex="0">
+            <div class="card-header">
+              <div class="card-icon-container">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                  <line x1="12" y1="11" x2="12" y2="17"></line>
+                  <line x1="9" y1="14" x2="15" y2="14"></line>
+                </svg>
+              </div>
+              <span class="card-badge" id="active-trips-count">3 Active</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Trips</h3>
+              <p class="card-desc" id="trips-card-desc">Track shared expenses</p>
+            </div>
+            <div class="card-footer">
+              <div class="avatar-group">
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=60&h=60"
+                  alt="Friend 1">
+                <img
+                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=60&h=60"
+                  alt="Friend 2">
+                <img
+                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=60&h=60"
+                  alt="Friend 3">
+                <div class="avatar-more">+5</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Daily Finance -->
+          <div class="action-card card-daily" id="home-finance-card" tabindex="0">
+            <div class="card-header">
+              <div class="card-icon-container">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="1" x2="12" y2="23"></line>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+              </div>
+              <span class="card-badge success" id="home-finance-badge">On Track</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Daily Finance</h3>
+              <p class="card-desc" id="finance-card-desc">Track salary & expenses</p>
+            </div>
+            <div class="card-footer">
+              <!-- Modern progress visual -->
+              <div class="progress-bar-container">
+                <div class="progress-bar-label">
+                  <span>Spent Budget</span>
+                  <span id="finance-spent-percentage">42%</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-fill" id="finance-progress-fill" style="width: 42%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Recent Activity Section -->
+        <section class="activity-section">
+          <div class="section-header">
+            <h2 class="section-title">Recent Activity</h2>
+            <button class="text-btn" id="home-see-all-btn" type="button">See All</button>
+          </div>
+
+          <div class="activity-timeline" id="activity-timeline">
+            <!-- Dynamic activities rendered in real-time -->
+          </div>
+        </section>
+
+        <!-- Premium Minimalist GenZ Footer -->
+        <footer class="app-footer-brand">
+          <p>Ledgerly — Cooked by Atharv (ate & left no crumbs 💅)</p>
+        </footer>
+      </div>
+    </div>
+
+    <!-- ========================================================== -->
+    <!-- 2. CREATE NEW TRIP VIEW                                    -->
+    <!-- ========================================================== -->
+    <div id="create-trip-view" class="app-view">
+      <!-- Header Area -->
+      <header class="view-header">
+        <button class="icon-btn back-btn" id="create-trip-back" aria-label="Go Back" type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+        </button>
+        <h2 class="view-title">New Adventure</h2>
+        <div style="width: 40px;"></div>
+      </header>
+
+      <!-- Scrollable Form Container -->
+      <div class="view-body-scroll">
+        <!-- Trip Banner Preview Card -->
+        <div class="trip-banner-preview default-banner-gradient-1" id="banner-preview">
+          <div class="banner-preview-overlay">
+            <span class="preview-tag">Cover Style</span>
+            <h3 class="preview-name" id="preview-trip-name">My New Trip</h3>
+            <p class="preview-location" id="preview-trip-dest">Destination</p>
+          </div>
+        </div>
+
+        <!-- Cover Preset Selector -->
+        <div class="cover-selector-container">
+          <label class="form-label-title">Choose Cover Design</label>
+          <div class="cover-presets-row">
+            <button class="preset-btn active grad-1" data-grad="1" aria-label="Blue Ocean Cover" type="button"></button>
+            <button class="preset-btn grad-2" data-grad="2" aria-label="Green Emerald Cover" type="button"></button>
+            <button class="preset-btn grad-3" data-grad="3" aria-label="Sunset Coral Cover" type="button"></button>
+            <button class="preset-btn grad-4" data-grad="4" aria-label="Desert Amber Cover" type="button"></button>
+          </div>
+        </div>
+
+        <form id="create-trip-form" class="trip-flow-form">
+          <!-- Trip Name -->
+          <div class="form-group">
+            <label for="trip-name">Trip Title</label>
+            <input type="text" id="trip-name" placeholder="e.g. Goa Getaway 🌴, Euro Trip" required autocomplete="off">
+          </div>
+
+          <!-- Destination -->
+          <div class="form-group">
+            <label for="trip-destination">Destination</label>
+            <input type="text" id="trip-destination" placeholder="e.g. Goa, Paris, Manali" required autocomplete="off">
+          </div>
+
+          <!-- Trip Dates -->
+          <div class="form-row-grid">
+            <div class="form-group">
+              <label for="trip-start-date">Starts On</label>
+              <input type="date" id="trip-start-date" required>
+            </div>
+            <div class="form-group">
+              <label for="trip-end-date">Ends On</label>
+              <input type="date" id="trip-end-date" required>
+            </div>
+          </div>
+
+          <!-- Trip Type Selector Pills -->
+          <div class="form-group">
+            <label class="form-label-title">Trip Style</label>
+            <div class="chip-row" id="trip-type-chips">
+              <div class="type-chip active" data-type="Friends">Friends</div>
+              <div class="type-chip" data-type="Family">Family</div>
+              <div class="type-chip" data-type="Couple">Couple</div>
+              <div class="type-chip" data-type="Solo">Solo</div>
+            </div>
+          </div>
+
+          <!-- Members Grid -->
+          <div class="form-group">
+            <div class="members-header-row">
+              <label class="form-label-title">Trip Members</label>
+              <button type="button" class="add-member-trigger-btn" id="open-add-member-btn">+ Add Member</button>
+            </div>
+
+            <!-- Dynamic list of chips -->
+            <div class="members-chips-grid" id="trip-members-list">
+              <!-- Default Owner Atharv -->
+              <div class="member-avatar-chip static">
+                <span class="mac-avatar"
+                  style="background-color: var(--color-primary-yellow); color: var(--color-charcoal);">AV</span>
+                <span class="mac-name">Atharv (You)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Action Button -->
+          <button type="submit" class="submit-btn create-adventure-btn">Create Adventure</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ========================================================== -->
+    <!-- 3. EXISTING TRIPS VIEW                                     -->
+    <!-- ========================================================== -->
+    <div id="existing-trips-view" class="app-view">
+      <!-- Search Header -->
+      <header class="trips-list-header">
+        <div class="list-header-top">
+          <button class="icon-btn back-btn" id="existing-trips-back" aria-label="Go Back" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+          </button>
+          <h2 class="view-title">My Adventures</h2>
+          <button class="icon-btn" id="add-trip-from-list" aria-label="Add Trip"
+            style="background-color: var(--color-primary-yellow); color: var(--color-charcoal);" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-bar-wrapper">
+          <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="trip-search" placeholder="Search destinations, names..." autocomplete="off">
+        </div>
+
+        <!-- Ongoing / Completed Tabs -->
+        <div class="trips-tab-container">
+          <div class="trip-tab active" data-status="ongoing">Ongoing</div>
+          <div class="trip-tab" data-status="completed">Completed</div>
+          <div class="tab-indicator"></div>
+        </div>
+      </header>
+
+      <!-- Scrollable List Container -->
+      <div class="view-body-scroll" id="trips-cards-list-container">
+
+        <!-- Dynamic trip cards rendered by app.js -->
+
+      </div>
+    </div>
+
+    <!-- ========================================================== -->
+    <!-- 4. TRIP DETAILS VIEW (CORE SCREEN)                         -->
+    <!-- ========================================================== -->
+    <div id="trip-details-view" class="app-view">
+      <!-- Scrollable Trip Details Content -->
+      <div class="view-body-scroll details-view-scroll">
+        <!-- Full Bleed Hero Cover Section -->
+        <div class="trip-details-hero default-banner-gradient-1" id="details-hero-banner">
+          <div class="hero-actions-overlay">
+            <button class="hero-round-btn" id="details-back-btn" aria-label="Go Back" type="button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+            </button>
+            <button class="hero-round-btn" id="details-settings-btn" aria-label="Trip Settings" type="button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path
+                  d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z">
+                </path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="hero-details-meta">
+            <span class="trip-tag-badge" id="details-trip-tag">Friends</span>
+            <h2 class="hero-trip-title" id="details-trip-title">Goa Getaway 🌴</h2>
+            <div class="hero-subtitle-row">
+              <span class="hero-loc" id="details-trip-dest">Goa, India</span>
+              <span class="hero-dot">•</span>
+              <span class="hero-dates" id="details-trip-dates">12 May - 18 May</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating Summary Card -->
+        <div class="trip-overall-summary-card">
+          <div class="tosc-left">
+            <span class="tosc-label">Total Shared Spend</span>
+            <h3 class="tosc-amount" id="details-total-spend">₹38,200</h3>
+            <p class="tosc-personal-indicator">You paid: <strong id="details-user-paid">₹12,400</strong></p>
+          </div>
+          <div class="tosc-right">
+            <div class="trip-avatars-stack" id="details-avatars-list" style="cursor: pointer;" title="Manage Members">
+              <!-- Dynamic avatars rendered by app.js -->
+            </div>
+            <span class="avatars-count" id="details-members-count" style="margin-bottom: 2px;">4 Members</span>
+            <button class="text-btn" id="open-manage-members-btn"
+              style="font-size: 0.65rem; font-weight: 700; color: var(--color-primary-yellow); background: none; border: none; cursor: pointer; padding: 4px 8px; border-radius: 8px; background-color: var(--color-card-bg-light); transition: transform 0.2s ease;"
+              type="button">
+              Manage Buddies
+            </button>
+          </div>
+        </div>
+
+        <!-- Category Summaries Progress Section -->
+        <section class="trip-stats-section">
+          <h3 class="details-section-heading">Expense Categories</h3>
+          <div class="category-breakdown-grid">
+            <!-- Food -->
+            <div class="category-summary-card">
+              <div class="csc-header">
+                <div class="csc-icon food-col">🍔</div>
+                <span class="csc-name">Food</span>
+              </div>
+              <div class="csc-meta">
+                <span class="csc-amount" id="cat-amt-Food">₹12,400</span>
+                <span class="csc-pct" id="cat-pct-Food">32%</span>
+              </div>
+              <div class="csc-progress-track">
+                <div class="csc-progress-fill" id="cat-fill-Food" style="width: 32%;"></div>
+              </div>
+            </div>
+
+            <!-- Travel -->
+            <div class="category-summary-card">
+              <div class="csc-header">
+                <div class="csc-icon travel-col">✈️</div>
+                <span class="csc-name">Travel</span>
+              </div>
+              <div class="csc-meta">
+                <span class="csc-amount" id="cat-amt-Travel">₹18,200</span>
+                <span class="csc-pct" id="cat-pct-Travel">48%</span>
+              </div>
+              <div class="csc-progress-track">
+                <div class="csc-progress-fill" id="cat-fill-Travel" style="width: 48%;"></div>
+              </div>
+            </div>
+
+            <!-- Hotel -->
+            <div class="category-summary-card">
+              <div class="csc-header">
+                <div class="csc-icon hotel-col">🏨</div>
+                <span class="csc-name">Hotel</span>
+              </div>
+              <div class="csc-meta">
+                <span class="csc-amount" id="cat-amt-Hotel">₹5,600</span>
+                <span class="csc-pct" id="cat-pct-Hotel">15%</span>
+              </div>
+              <div class="csc-progress-track">
+                <div class="csc-progress-fill" id="cat-fill-Hotel" style="width: 15%;"></div>
+              </div>
+            </div>
+
+            <!-- Shopping -->
+            <div class="category-summary-card">
+              <div class="csc-header">
+                <div class="csc-icon shop-col">🛍️</div>
+                <span class="csc-name">Shopping</span>
+              </div>
+              <div class="csc-meta">
+                <span class="csc-amount" id="cat-amt-Shopping">₹2,000</span>
+                <span class="csc-pct" id="cat-pct-Shopping">5%</span>
+              </div>
+              <div class="csc-progress-track">
+                <div class="csc-progress-fill" id="cat-fill-Shopping" style="width: 5%;"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Settlements Row Panel -->
+        <section class="trip-settlement-section">
+          <div class="settlements-header">
+            <h3 class="details-section-heading">Settlements</h3>
+            <span class="settle-badge success" id="settle-summary-text">Balances Calculated</span>
+          </div>
+
+          <div class="settlement-cards-list" id="details-settlements-list">
+            <!-- Dynamic settlements rendered by app.js -->
+          </div>
+        </section>
+
+        <!-- Expense Timeline inside trip details view -->
+        <section class="trip-timeline-section">
+          <h3 class="details-section-heading">Expenses Timeline</h3>
+
+          <div class="timeline-timeline" id="details-expenses-timeline">
+            <!-- Dynamic expenses timeline rendered by app.js -->
+          </div>
+        </section>
+
+        <div class="details-spacer"></div>
+      </div>
+
+      <!-- Sticky Floating Add Expense Trigger -->
+      <button class="sticky-fab-btn" id="open-trip-expense-modal"
+        onclick="if (window.openAddExpenseForTrip) { window.openAddExpenseForTrip(window.activeTripId || 101); }"
+        aria-label="Add Trip Expense" type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+        <span>Add Expense</span>
+      </button>
+    </div>
+
+    <!-- ========================================================== -->
+    <!-- 5. DAILY FINANCE TRACKER VIEW                              -->
+    <!-- ========================================================== -->
+    <section class="app-view" id="finance-view">
+      <!-- Header Area -->
+      <header class="view-header" style="display: flex; align-items: center; gap: 16px; width: 100%;">
+        <button class="icon-btn back-btn" id="finance-back-btn" aria-label="Go Back" type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+        </button>
+        <div>
+          <p class="view-subtitle">Personal Finance</p>
+          <h1 class="view-title" style="margin-bottom: 0;">Daily Tracker 💸</h1>
+        </div>
+      </header>
+
+      <div class="view-body-scroll finance-view-scroll">
+        <!-- Balance Cards Grid -->
+        <section class="finance-summary-grid">
+          <article class="finance-summary-card income">
+            <span class="fs-label">Income</span>
+            <strong id="total-income">₹0</strong>
+          </article>
+
+          <article class="finance-summary-card expense">
+            <span class="fs-label">Expenses</span>
+            <strong id="total-expense">₹0</strong>
+          </article>
+
+          <article class="finance-summary-card balance">
+            <span class="fs-label">Balance</span>
+            <strong id="current-balance">₹0</strong>
+          </article>
+        </section>
+
+        <!-- Filter Tabs -->
+        <section class="finance-filters" id="finance-filters-container">
+          <button class="finance-filter active" data-filter="today">Today</button>
+          <button class="finance-filter" data-filter="week">7 Days</button>
+          <button class="finance-filter" data-filter="month">Month</button>
+          <button class="finance-filter" data-filter="year">Year</button>
+        </section>
+
+        <!-- Dynamic Personal Transactions List -->
+        <section class="transactions-section">
+          <div class="section-heading">
+            <p class="eyebrow">Transactions</p>
+            <h2>Recent Activity</h2>
+          </div>
+
+          <div class="finance-transactions-list" id="transactions-list">
+            <!-- Dynamic personal transactions rendered by finance.js -->
+          </div>
+        </section>
+
+        <div class="details-spacer"></div>
+      </div>
+
+      <!-- Sticky Floating Add Transaction Trigger -->
+      <button class="sticky-fab-btn" id="finance-open-add-modal" aria-label="Add Transaction" type="button"
+        style="background-image: linear-gradient(135deg, var(--color-success), #10B981); color: white; box-shadow: 0 8px 24px rgba(16, 185, 129, 0.35);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+        <span>Add Transaction</span>
+      </button>
+    </section>
+
+    <!-- ========================================================== -->
+    <!-- 6. ACTIVITY HISTORY VIEW                                   -->
+    <!-- ========================================================== -->
+    <section class="app-view" id="history-view">
+      <!-- Header Area -->
+      <header class="view-header" style="display: flex; align-items: center; gap: 16px; width: 100%;">
+        <button class="icon-btn back-btn" id="history-back-btn" aria-label="Go Back" type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+        </button>
+        <div>
+          <p class="view-subtitle">Chronicle</p>
+          <h1 class="view-title" style="margin-bottom: 0;">Activity History 📑</h1>
+        </div>
+      </header>
+
+      <!-- History Tabs (Daily vs Trips) -->
+      <div style="padding: 0 24px 16px 24px;">
+        <div class="trips-tab-container" id="history-tabs-container">
+          <div class="trip-tab active" data-history-tab="daily">Daily Finance</div>
+          <div class="trip-tab" data-history-tab="trips">Trip Shared</div>
+          <div class="tab-indicator" id="history-tab-indicator"></div>
+        </div>
+      </div>
+
+      <div class="view-body-scroll">
+        <!-- Search Bar -->
+        <div class="search-bar-wrapper" style="margin-bottom: 20px;">
+          <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="history-search" placeholder="Search by description or category..." autocomplete="off">
+        </div>
+
+        <!-- History Lists -->
+        <div id="history-daily-list" class="finance-transactions-list">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <div id="history-trips-list" class="finance-transactions-list" style="display: none;">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <div class="details-spacer"></div>
+      </div>
+    </section>
+
+    <!-- ========================================================== -->
+    <!-- 0. SIGN UP / ONBOARDING AUTH VIEW                          -->
+    <!-- ========================================================== -->
+    <div id="signup-view" class="app-view">
+      <div class="view-body-scroll" style="padding: 40px 24px;">
+        <div style="text-align: center; margin-bottom: 32px; margin-top: 20px;">
+          <div
+            style="width: 64px; height: 64px; border-radius: 20px; background-color: var(--color-primary-yellow); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: var(--shadow-banner);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+              stroke="var(--color-charcoal)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23"></line>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+          </div>
+          <h1 style="font-size: 1.8rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px;">Welcome to
+            Ledgerly</h1>
+          <p style="font-size: 0.88rem; color: var(--color-text-secondary); font-weight: 500;">Secure the bag, track the
+            savings. No cap. 💸</p>
+        </div>
+
+        <!-- Restore Previous Session Card (Dynamically shown if backup exists) -->
+        <div id="restore-session-card"
+          style="display: none; background: linear-gradient(135deg, var(--color-card-bg-light), var(--color-card-bg)); border: 1px solid var(--color-border-subtle); border-radius: 24px; padding: 20px; margin-bottom: 24px; text-align: center; box-shadow: var(--shadow-ambient); gap: 12px; flex-direction: column; align-items: center; justify-content: center;">
+          <span style="font-size: 1.3rem;">👤</span>
+          <div>
+            <h4 style="font-weight: 700; font-size: 0.95rem; margin-bottom: 2px;">Found Previous Session</h4>
+            <p id="restore-session-alias"
+              style="font-size: 0.78rem; color: var(--color-text-secondary); font-weight: 500;">@atharv</p>
+          </div>
+          <button type="button" id="restore-session-btn" class="submit-btn"
+            style="height: 38px; font-size: 0.8rem; margin-top: 4px; padding: 0 20px; width: auto; border-radius: 12px; background-color: var(--color-success); color: white; border: none; font-weight: 700; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);">
+            Log In as Last Session ⚡
+          </button>
+        </div>
+
+        <form id="signup-form" class="sheet-form"
+          style="background-color: var(--color-card-bg); border: 1px solid var(--color-border-subtle); border-radius: 28px; padding: 24px; box-shadow: var(--shadow-ambient);">
+          <div class="form-group">
+            <label for="signup-name">Full Name</label>
+            <input type="text" id="signup-name" placeholder="e.g. Atharv Vyas" required autocomplete="off">
+          </div>
+
+          <div class="form-group">
+            <label for="signup-alias">Nickname / Slang Alias</label>
+            <input type="text" id="signup-alias" placeholder="e.g. Atharv, Big Boss" required autocomplete="off">
+          </div>
+
+          <div class="form-group">
+            <label for="signup-email">Email Address</label>
+            <input type="email" id="signup-email" placeholder="e.g. atharv@ledgerly.com" required autocomplete="off">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label-title">Choose Your Avatar</label>
+            <div class="avatar-presets-grid" id="signup-avatar-row"
+              style="display: flex; gap: 8px; overflow-x: auto; padding: 4px 0; scrollbar-width: none;">
+              <button type="button" class="avatar-preset-btn active" data-avatar="🦊"
+                style="font-size: 1.5rem; background: var(--color-card-bg-light); border: 2px solid var(--color-primary-yellow); width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🦊</button>
+              <button type="button" class="avatar-preset-btn" data-avatar="🐼"
+                style="font-size: 1.5rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🐼</button>
+              <button type="button" class="avatar-preset-btn" data-avatar="🚀"
+                style="font-size: 1.5rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🚀</button>
+              <button type="button" class="avatar-preset-btn" data-avatar="⚡"
+                style="font-size: 1.5rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">⚡</button>
+              <button type="button" class="avatar-preset-btn" data-avatar="🕶️"
+                style="font-size: 1.5rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🕶️</button>
+              <button type="button" class="avatar-preset-btn" data-avatar="💻"
+                style="font-size: 1.5rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">💻</button>
+              <button type="button" class="avatar-preset-btn" data-avatar="🍕"
+                style="font-size: 1.5rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🍕</button>
+              <button type="button" class="avatar-preset-btn" data-avatar="💎"
+                style="font-size: 1.5rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">💎</button>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px;">
+            <button type="submit" class="submit-btn" style="margin-top: 0; height: 46px;">Create Fresh ⚡</button>
+            <button type="button" id="demo-seed-btn" class="submit-btn"
+              style="margin-top: 0; height: 46px; background-color: var(--color-card-bg-light); border: 1px solid var(--color-border-subtle); color: var(--color-text-secondary);">Demo
+              Mode 🚀</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ========================================================== -->
+    <!-- 7. PROFILE & SETTINGS VIEW                                 -->
+    <!-- ========================================================== -->
+    <section class="app-view" id="profile-view">
+      <!-- Header Area -->
+      <header class="view-header"
+        style="display: flex; align-items: center; justify-content: center; gap: 16px; width: 100%;">
+        <div style="text-align: center; flex: 1;">
+          <p class="view-subtitle">My Space</p>
+          <h1 class="view-title" style="margin-bottom: 0;">Profile & Settings 👤</h1>
+        </div>
+      </header>
+
+      <div class="view-body-scroll" style="padding-bottom: 120px;">
+        <!-- Avatar card -->
+        <div
+          style="text-align: center; margin-bottom: 24px; background-color: var(--color-card-bg); border: 1px solid var(--color-border-subtle); border-radius: 28px; padding: 28px 24px; box-shadow: var(--shadow-ambient); position: relative; overflow: hidden;">
+          <div id="profile-avatar-container"
+            style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--color-primary-yellow), var(--color-soft-yellow)); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: 0 8px 24px rgba(251, 183, 0, 0.3); cursor: pointer; position: relative; transition: transform 0.2s ease;"
+            title="Edit Avatar & Profile">
+            <span id="profile-avatar-initials"
+              style="font-size: 2.2rem; font-weight: 800; color: var(--color-charcoal);">🦊</span>
+            <div
+              style="position: absolute; bottom: -2px; right: -2px; background: var(--color-card-bg-light); border: 2px solid var(--color-primary-yellow); width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; box-shadow: 0 2px 6px rgba(0,0,0,0.3);">
+              ✏️</div>
+          </div>
+          <h2 id="profile-full-name"
+            style="font-size: 1.35rem; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 4px;">Atharv Vyas</h2>
+          <p id="profile-alias-tag"
+            style="font-size: 0.82rem; font-weight: 700; color: var(--color-primary-yellow); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px;">
+            @atharv</p>
+          <p id="profile-email-text" style="font-size: 0.85rem; color: var(--color-text-secondary); font-weight: 500;">
+            atharv@ledgerly.com</p>
+        </div>
+
+        <!-- Quick actions -->
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px;">
+          <button class="btn-detail-action edit-btn" id="open-edit-profile-btn"
+            style="height: 48px; border-radius: 16px; border: 1px solid var(--color-border-subtle); display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700; font-family: inherit; font-size: 0.9rem; cursor: pointer; width: 100%;"
+            type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+              <path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+            </svg>
+            <span>Edit Profile Details</span>
+          </button>
+
+          <button class="btn-detail-action edit-btn" id="profile-logout-btn"
+            style="height: 48px; border-radius: 16px; border: 1px solid var(--color-border-subtle); display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700; font-family: inherit; font-size: 0.9rem; cursor: pointer; width: 100%;"
+            type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+              <polyline points="16 17 21 12 16 7"></polyline>
+              <line x1="21" y1="12" x2="9" y2="12"></line>
+            </svg>
+            <span>Log Out Only</span>
+          </button>
+
+          <button class="btn-detail-action delete-btn" id="profile-reset-btn"
+            style="height: 48px; border-radius: 16px; max-width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700; font-family: inherit; font-size: 0.9rem; cursor: pointer; width: 100%;"
+            type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3 6 5 6 21 6"></polyline>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            </svg>
+            <span>Reset App & Clear Data</span>
+          </button>
+        </div>
+
+        <footer class="app-footer-brand" style="margin-top: 12px;">
+          <p>Version 2.2.0 — Securing the bag since 2026 💅</p>
+        </footer>
+      </div>
+    </section>
+
+    <!-- Spacer to avoid overlapping dynamic floating dock navigation -->
+    <div class="dock-spacer"></div>
+
+    <!-- Floating Bottom Navigation Dock -->
+    <nav class="bottom-dock">
+      <ul class="dock-list">
+        <li class="dock-item active" data-tab="home" tabindex="0">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span class="dock-label">Home</span>
+        </li>
+        <li class="dock-item" data-tab="trips" id="dock-trips-tab" tabindex="0">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+          <span class="dock-label">Trips</span>
+        </li>
+
+        <!-- Center Floating Action Button (Global Add Drawer) -->
+        <li class="dock-item fab-item">
+          <button class="fab-btn" id="open-add-modal" aria-label="Add Transaction or Trip" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </button>
+        </li>
+
+        <li class="dock-item" data-tab="analytics" tabindex="0">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="20" x2="18" y2="10"></line>
+            <line x1="12" y1="20" x2="12" y2="4"></line>
+            <line x1="6" y1="20" x2="6" y2="14"></line>
+          </svg>
+          <span class="dock-label">Analytics</span>
+        </li>
+        <li class="dock-item" data-tab="profile" tabindex="0">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span class="dock-label">Profile</span>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- ========================================================== -->
+    <!-- OVERLAYS, SHEETS & DIALOGS MODALS                          -->
+    <!-- ========================================================== -->
+
+    <!-- Modal 1: Trips Hub Entry Sheet overlay (Option Selector) -->
+    <div class="bottom-sheet" id="trips-entry-modal" aria-hidden="true">
+      <div class="sheet-overlay" id="close-trips-hub-overlay"></div>
+      <div class="sheet-content trips-hub-content">
+        <div class="sheet-drag-handle"></div>
+        <div class="sheet-header">
+          <h3 class="sheet-title">Adventures</h3>
+          <button class="sheet-close-btn" id="close-trips-hub-btn" aria-label="Close" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <div class="trips-entry-options-grid">
+          <!-- Option A: Create New Trip -->
+          <button class="trips-entry-card" id="btn-trips-entry-new" type="button">
+            <div class="te-icon-wrapper ocean-col">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                </path>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+              </svg>
+            </div>
+            <div class="te-details">
+              <h4 class="te-title">Plan New Trip</h4>
+              <p class="te-desc">Set boundaries, configure budgets & add travel buddies.</p>
+            </div>
+            <span class="te-arrow">→</span>
+          </button>
+
+          <!-- Option B: Existing Trips -->
+          <button class="trips-entry-card" id="btn-trips-entry-list" type="button">
+            <div class="te-icon-wrapper amber-col">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </div>
+            <div class="te-details">
+              <h4 class="te-title">My Trips Directory</h4>
+              <p class="te-desc">Access ongoing settlements, completions & expense summaries.</p>
+            </div>
+            <span class="te-arrow">→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 2: Add Transaction Bottom Sheet modal (Home View) -->
+    <div class="bottom-sheet" id="add-modal" aria-hidden="true">
+      <div class="sheet-overlay" id="close-modal-overlay"></div>
+      <div class="sheet-content">
+        <!-- Handle for dragging design visual -->
+        <div class="sheet-drag-handle"></div>
+
+        <div class="sheet-header">
+          <h3 class="sheet-title">Add Transaction</h3>
+          <button class="sheet-close-btn" id="close-add-modal" aria-label="Close form" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <form id="transaction-form" class="sheet-form">
+          <div class="form-group-row">
+            <div class="form-group amount-group">
+              <label for="amount">Amount (₹)</label>
+              <div class="amount-input-wrapper">
+                <span class="currency-symbol">₹</span>
+                <input type="number" id="amount" placeholder="0.00" required min="1" step="any" autocomplete="off">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="title">Title / Description</label>
+            <input type="text" id="title" placeholder="e.g. Flight ticket, Coffee, Dinner" required autocomplete="off">
+          </div>
+
+          <div class="form-row-grid">
+            <div class="form-group">
+              <label for="type">Type</label>
+              <select id="type">
+                <option value="expense">Expense (-)</option>
+                <option value="income">Income (+)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="category">Category</label>
+              <select id="category">
+                <option value="Personal">Personal</option>
+                <option value="Trips">Trips</option>
+                <option value="Food">Food & Drinks</option>
+                <option value="Hotel">Accommodations</option>
+                <option value="Transport">Transport</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="notes">Notes / Details (Optional)</label>
+            <input type="text" id="notes" placeholder="e.g. Bought lunch, Cafe beat" autocomplete="off">
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="submit-btn">Save Transaction</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal 3: Add Member Bottom Sheet Dialog (Trips Setup) -->
+    <div class="bottom-sheet" id="add-member-modal" aria-hidden="true">
+      <div class="sheet-overlay" id="close-member-overlay"></div>
+      <div class="sheet-content micro-sheet-content">
+        <div class="sheet-drag-handle"></div>
+        <div class="sheet-header">
+          <h3 class="sheet-title">Add Travel Buddy</h3>
+          <button class="sheet-close-btn" id="close-add-member-btn" type="button" aria-label="Close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <form id="add-member-form" class="sheet-form">
+          <div class="form-group">
+            <label for="member-name">Buddy Name / Alias</label>
+            <input type="text" id="member-name" placeholder="e.g. Rahul, Neha, Rohit" required autocomplete="off">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label-title">Avatar Backdrop Color</label>
+            <div class="avatar-color-row">
+              <button type="button" class="color-dot-btn active" data-color="#10B981" style="background-color: #10B981;"
+                aria-label="Emerald Color"></button>
+              <button type="button" class="color-dot-btn" data-color="#EF4444" style="background-color: #EF4444;"
+                aria-label="Crimson Color"></button>
+              <button type="button" class="color-dot-btn" data-color="#3B82F6" style="background-color: #3B82F6;"
+                aria-label="Royal Blue Color"></button>
+              <button type="button" class="color-dot-btn" data-color="#8B5CF6" style="background-color: #8B5CF6;"
+                aria-label="Violet Color"></button>
+              <button type="button" class="color-dot-btn" data-color="#EC4899" style="background-color: #EC4899;"
+                aria-label="Deep Pink Color"></button>
+              <button type="button" class="color-dot-btn" data-color="#FBB700" style="background-color: #FBB700;"
+                aria-label="Primary Yellow Color"></button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label-title">Choose Buddy Avatar</label>
+              <div class="avatar-presets-grid" id="buddy-avatar-row"
+                style="display: flex; gap: 8px; overflow-x: auto; padding: 4px 0; scrollbar-width: none;">
+                <button type="button" class="avatar-preset-btn active" data-avatar="🦁"
+                  style="font-size: 1.3rem; background: var(--color-card-bg-light); border: 2px solid var(--color-primary-yellow); width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🦁</button>
+                <button type="button" class="avatar-preset-btn" data-avatar="🐯"
+                  style="font-size: 1.3rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🐯</button>
+                <button type="button" class="avatar-preset-btn" data-avatar="🐨"
+                  style="font-size: 1.3rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🐨</button>
+                <button type="button" class="avatar-preset-btn" data-avatar="🦄"
+                  style="font-size: 1.3rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🦄</button>
+                <button type="button" class="avatar-preset-btn" data-avatar="🐙"
+                  style="font-size: 1.3rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🐙</button>
+                <button type="button" class="avatar-preset-btn" data-avatar="🐵"
+                  style="font-size: 1.3rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🐵</button>
+                <button type="button" class="avatar-preset-btn" data-avatar="🎨"
+                  style="font-size: 1.3rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🎨</button>
+                <button type="button" class="avatar-preset-btn" data-avatar="🍔"
+                  style="font-size: 1.3rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🍔</button>
+              </div>
+            </div>
+
+            <button type="submit" class="submit-btn" style="margin-top: 10px;">Save Buddy</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal 4: Add Trip Expense Bottom Sheet Drawer -->
+    <div class="bottom-sheet" id="add-trip-expense-modal" aria-hidden="true">
+      <div class="sheet-overlay" id="close-trip-expense-overlay"></div>
+      <div class="sheet-content">
+        <div class="sheet-drag-handle"></div>
+        <div class="sheet-header">
+          <h3 class="sheet-title" id="trip-expense-modal-title">Add Trip Expense</h3>
+          <button class="sheet-close-btn" id="close-trip-expense-btn" aria-label="Close form" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <form id="trip-expense-form" class="sheet-form">
+          <input type="hidden" id="edit-expense-id" value="">
+
+          <!-- Amount -->
+          <div class="form-group-row">
+            <div class="form-group amount-group">
+              <label for="trip-expense-amount">Amount (₹)</label>
+              <div class="amount-input-wrapper">
+                <span class="currency-symbol">₹</span>
+                <input type="number" id="trip-expense-amount" placeholder="0.00" required min="1" step="any"
+                  autocomplete="off">
+              </div>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="form-group">
+            <label for="trip-expense-title">Expense Title</label>
+            <input type="text" id="trip-expense-title" placeholder="e.g. Dinner at Beach, Cab to airport" required
+              autocomplete="off">
+          </div>
+
+          <!-- Category and Paid By -->
+          <div class="form-row-grid">
+            <div class="form-group">
+              <label for="trip-expense-category">Category</label>
+              <select id="trip-expense-category">
+                <option value="Food">Food & Drinks 🍔</option>
+                <option value="Travel">Travel / Transit ✈️</option>
+                <option value="Hotel">Accommodations 🏨</option>
+                <option value="Shopping">Shopping 🛍️</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="trip-expense-payer">Paid By</label>
+              <select id="trip-expense-payer">
+                <option value="Atharv">Atharv (You)</option>
+                <option value="Rahul">Rahul</option>
+                <option value="Neha">Neha</option>
+                <option value="Rohit">Rohit</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Shared or Personal Toggle & Notes -->
+          <div class="form-row-grid">
+            <div class="form-group">
+              <label for="trip-expense-split">Split Scheme</label>
+              <select id="trip-expense-split">
+                <option value="equally">Split Equally (1/N)</option>
+                <option value="personal">Personal Expense (Solo)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="trip-expense-notes">Notes (Optional)</label>
+              <input type="text" id="trip-expense-notes" placeholder="e.g. Shared equally" autocomplete="off">
+            </div>
+          </div>
+
+          <!-- Action Button -->
+          <div class="form-actions">
+            <button type="submit" class="submit-btn" id="trip-expense-save-btn">Save Expense</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal 5: View Expense Details Bottom Sheet Drawer -->
+    <div class="bottom-sheet" id="view-expense-details-modal" aria-hidden="true">
+      <div class="sheet-overlay" id="close-expense-details-overlay"></div>
+      <div class="sheet-content">
+        <div class="sheet-drag-handle"></div>
+        <div class="sheet-header">
+          <h3 class="sheet-title">Expense Details</h3>
+          <button class="sheet-close-btn" id="close-expense-details-btn" aria-label="Close" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <div class="expense-details-body">
+          <!-- Large Amount and Title Header -->
+          <div class="expense-details-hero-section">
+            <div class="edh-icon" id="detail-exp-icon">🍔</div>
+            <h2 class="edh-amount" id="detail-exp-amount">₹0.00</h2>
+            <p class="edh-title" id="detail-exp-title">Expense Title</p>
+          </div>
+
+          <!-- Metadata rows -->
+          <div class="expense-details-meta-list">
+            <div class="edm-row">
+              <span class="edm-label">Category</span>
+              <span class="edm-value" id="detail-exp-category">Food</span>
+            </div>
+            <div class="edm-row">
+              <span class="edm-label">Paid By</span>
+              <span class="edm-value" id="detail-exp-payer">Atharv</span>
+            </div>
+            <div class="edm-row">
+              <span class="edm-label">Split Scheme</span>
+              <span class="edm-value" id="detail-exp-split">Split Equally (1/N)</span>
+            </div>
+            <div class="edm-row">
+              <span class="edm-label">Logged On</span>
+              <span class="edm-value" id="detail-exp-date">Just Now</span>
+            </div>
+            <div class="edm-row edm-notes-row">
+              <span class="edm-label">Notes</span>
+              <p class="edm-value-notes" id="detail-exp-notes">None</p>
+            </div>
+          </div>
+
+          <!-- Bottom Action Buttons -->
+          <div class="expense-details-actions">
+            <button class="btn-detail-action edit-btn" id="detail-exp-edit-btn" type="button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                <path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+              </svg>
+              <span>Edit Expense</span>
+            </button>
+            <button class="btn-detail-action delete-btn" id="detail-exp-delete-btn" type="button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              </svg>
+              <span>Delete</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 6: Manage Members Bottom Sheet Drawer -->
+    <div class="bottom-sheet" id="manage-members-modal" aria-hidden="true">
+      <div class="sheet-overlay" id="close-manage-members-overlay"></div>
+      <div class="sheet-content">
+        <div class="sheet-drag-handle"></div>
+        <div class="sheet-header">
+          <h3 class="sheet-title">Manage Buddies</h3>
+          <button class="sheet-close-btn" id="close-manage-members-btn" aria-label="Close" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <div class="manage-members-body" style="padding: 10px 4px;">
+          <!-- Add New Buddy Form Section -->
+          <form id="details-add-member-form" class="sheet-form"
+            style="margin-bottom: 24px; border-bottom: 1px solid var(--color-border-subtle); padding-bottom: 20px;">
+            <h4 class="form-label-title" style="margin-bottom: 10px; font-size: 0.85rem;">Add New Buddy</h4>
+            <div class="form-row-grid" style="grid-template-columns: 1fr auto; align-items: flex-end; gap: 10px;">
+              <div class="form-group" style="margin-bottom: 0;">
+                <input type="text" id="details-member-name" placeholder="e.g. Rohit, Rohit Sharma" required
+                  autocomplete="off" style="height: 40px;">
+              </div>
+              <button type="submit" class="submit-btn"
+                style="height: 40px; margin-top: 0; padding: 0 16px; font-size: 0.85rem;">Add</button>
+            </div>
+
+            <div class="form-group" style="margin-top: 12px; margin-bottom: 0;">
+              <div class="avatar-color-row" id="details-color-row" style="gap: 8px;">
+                <button type="button" class="color-dot-btn active" data-color="#10B981"
+                  style="background-color: #10B981; width: 22px; height: 22px;" aria-label="Emerald"></button>
+                <button type="button" class="color-dot-btn" data-color="#EF4444"
+                  style="background-color: #EF4444; width: 22px; height: 22px;" aria-label="Crimson"></button>
+                <button type="button" class="color-dot-btn" data-color="#3B82F6"
+                  style="background-color: #3B82F6; width: 22px; height: 22px;" aria-label="Royal Blue"></button>
+                <button type="button" class="color-dot-btn" data-color="#8B5CF6"
+                  style="background-color: #8B5CF6; width: 22px; height: 22px;" aria-label="Violet"></button>
+                <button type="button" class="color-dot-btn" data-color="#EC4899"
+                  style="background-color: #EC4899; width: 22px; height: 22px;" aria-label="Deep Pink"></button>
+                <button type="button" class="color-dot-btn" data-color="#FBB700"
+                  style="background-color: #FBB700; width: 22px; height: 22px;" aria-label="Yellow"></button>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 10px; margin-bottom: 0;">
+              <label class="form-label-title" style="margin-bottom: 6px; font-size: 0.75rem;">Choose Avatar</label>
+              <div class="avatar-presets-grid" id="details-buddy-avatar-row"
+                style="display: flex; gap: 6px; overflow-x: auto; padding: 2px 0; scrollbar-width: none;">
+                <button type="button" class="avatar-preset-btn active" data-avatar="🦁"
+                  style="font-size: 1.1rem; background: var(--color-card-bg-light); border: 2px solid var(--color-primary-yellow); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🦁</button>
+                <button type="button" class="avatar-preset-btn" data-avatar="🐯"
+                  style="font-size: 1.1rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🐯</button>
+                <button type="button" class="avatar-preset-btn" data-avatar="🐨"
+                  style="font-size: 1.1rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🐨</button>
+                <button type="button" class="avatar-preset-btn" data-avatar="🦄"
+                  style="font-size: 1.1rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🦄</button>
+                <button type="button" class="avatar-preset-btn" data-avatar="🐙"
+                  style="font-size: 1.1rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🐙</button>
+                <button type="button" class="avatar-preset-btn" data-avatar="🐵"
+                  style="font-size: 1.1rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🐵</button>
+                <button type="button" class="avatar-preset-btn" data-avatar="🎨"
+                  style="font-size: 1.1rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🎨</button>
+                <button type="button" class="avatar-preset-btn" data-avatar="🍔"
+                  style="font-size: 1.1rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🍔</button>
+              </div>
+            </div>
+          </form>
+
+          <!-- Current Members List Section -->
+          <h4 class="form-label-title" style="margin-bottom: 12px; font-size: 0.85rem;">Current Travel Buddies</h4>
+          <div class="current-members-scroll" id="details-members-scroll-container"
+            style="max-height: 220px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;">
+            <!-- Rendered Dynamically in JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 7: Edit Profile Details Bottom Sheet Drawer -->
+    <div class="bottom-sheet" id="edit-profile-modal" aria-hidden="true">
+      <div class="sheet-overlay" id="close-edit-profile-overlay"></div>
+      <div class="sheet-content">
+        <div class="sheet-drag-handle"></div>
+        <div class="sheet-header">
+          <h3 class="sheet-title">Edit Profile</h3>
+          <button class="sheet-close-btn" id="close-edit-profile-btn" aria-label="Close form" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <form id="edit-profile-form" class="sheet-form">
+          <div class="form-group">
+            <label for="edit-profile-name">Full Name</label>
+            <input type="text" id="edit-profile-name" required autocomplete="off">
+          </div>
+
+          <div class="form-group">
+            <label for="edit-profile-alias">Nickname / Slang Alias</label>
+            <input type="text" id="edit-profile-alias" required autocomplete="off">
+          </div>
+
+          <div class="form-group">
+            <label for="edit-profile-email">Email Address</label>
+            <input type="email" id="edit-profile-email" required autocomplete="off">
+          </div>
+
+
+
+          <div class="form-group">
+            <label class="form-label-title">Choose Your Avatar</label>
+            <div class="avatar-presets-grid" id="edit-avatar-row"
+              style="display: flex; gap: 8px; overflow-x: auto; padding: 4px 0; scrollbar-width: none;">
+              <button type="button" class="avatar-preset-btn active" data-avatar="🦊"
+                style="font-size: 1.5rem; background: var(--color-card-bg-light); border: 2px solid var(--color-primary-yellow); width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🦊</button>
+              <button type="button" class="avatar-preset-btn" data-avatar="🐼"
+                style="font-size: 1.5rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🐼</button>
+              <button type="button" class="avatar-preset-btn" data-avatar="🚀"
+                style="font-size: 1.5rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🚀</button>
+              <button type="button" class="avatar-preset-btn" data-avatar="⚡"
+                style="font-size: 1.5rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">⚡</button>
+              <button type="button" class="avatar-preset-btn" data-avatar="🕶️"
+                style="font-size: 1.5rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🕶️</button>
+              <button type="button" class="avatar-preset-btn" data-avatar="💻"
+                style="font-size: 1.5rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">💻</button>
+              <button type="button" class="avatar-preset-btn" data-avatar="🍕"
+                style="font-size: 1.5rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🍕</button>
+              <button type="button" class="avatar-preset-btn" data-avatar="💎"
+                style="font-size: 1.5rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">💎</button>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="submit-btn">Save Changes 💾</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Soft Toast Notification -->
+    <div class="toast" id="toast-notification">
+      <span class="toast-icon">✓</span>
+      <span class="toast-message">Action successful!</span>
+    </div>
+
+  </main>
+
+  <!-- Core JavaScript Shell -->
+  <script src="app.js?v=2.2.2"></script>
+  <script src="finance.js?v=2.2.2"></script>
+</body>
+
+</html>
