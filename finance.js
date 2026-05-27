@@ -8,12 +8,14 @@
 let transactions = [];
 
 const saveTransactionsToLocalStorage = () => {
-    localStorage.setItem("ledgerly-transactions", JSON.stringify(transactions));
+    const key = window.getStorageKey("transactions");
+    localStorage.setItem(key, JSON.stringify(transactions));
     window.transactions = transactions;
 };
 
 const loadTransactionsFromLocalStorage = () => {
-    const storedTx = localStorage.getItem("ledgerly-transactions");
+    const key = window.getStorageKey("transactions");
+    const storedTx = localStorage.getItem(key);
     if (storedTx) {
         try {
             transactions = JSON.parse(storedTx);
@@ -22,12 +24,11 @@ const loadTransactionsFromLocalStorage = () => {
                 if (tx.date) tx.date = new Date(tx.date);
             });
         } catch (e) {
-            console.error("Failed to parse ledgerly-transactions", e);
+            console.error("Failed to parse user transactions from localStorage", e);
         }
     } else {
         // Fresh start for first time sign up: empty transactions
         transactions = [];
-        saveTransactionsToLocalStorage();
     }
     window.transactions = transactions;
     window.loadTransactionsFromLocalStorage = loadTransactionsFromLocalStorage;
@@ -885,8 +886,8 @@ const initFinance = () => {
     const profileLogoutBtn = document.getElementById("profile-logout-btn");
     if (profileLogoutBtn) {
         profileLogoutBtn.addEventListener("click", () => {
-            // Keep transactions and trips in localStorage (only remove profile details)
-            localStorage.removeItem("ledgerly-profile");
+            // Drop current user session pointer while retaining all user files and last user reference
+            localStorage.removeItem("ledgerly-current-user");
             sessionStorage.removeItem("ledgerly-greeting");
 
             const toast = document.getElementById("toast-notification");
@@ -905,16 +906,29 @@ const initFinance = () => {
     const profileResetBtn = document.getElementById("profile-reset-btn");
     if (profileResetBtn) {
         profileResetBtn.addEventListener("click", () => {
-            // WIPE EVERYTHING completely!
-            localStorage.removeItem("ledgerly-profile");
-            localStorage.removeItem("ledgerly-trips");
-            localStorage.removeItem("ledgerly-transactions");
-            localStorage.removeItem("ledgerly-theme");
+            // Purge only the active user's scoped files
+            const profileKey = window.getStorageKey("profile");
+            const tripsKey = window.getStorageKey("trips");
+            const txKey = window.getStorageKey("transactions");
+            const themeKey = window.getStorageKey("theme");
+
+            localStorage.removeItem(profileKey);
+            localStorage.removeItem(tripsKey);
+            localStorage.removeItem(txKey);
+            localStorage.removeItem(themeKey);
+
+            // Clean up dynamic session pointers
+            const currentUser = localStorage.getItem("ledgerly-current-user");
+            const lastUser = localStorage.getItem("ledgerly-last-user");
+            if (lastUser === currentUser) {
+                localStorage.removeItem("ledgerly-last-user");
+            }
+            localStorage.removeItem("ledgerly-current-user");
             sessionStorage.removeItem("ledgerly-greeting");
 
             const toast = document.getElementById("toast-notification");
             if (toast) {
-                toast.querySelector(".toast-message").textContent = "All data cleared! Resetting app... ⚡";
+                toast.querySelector(".toast-message").textContent = "Your data cleared! Resetting app... ⚡";
                 toast.classList.add("show");
             }
 

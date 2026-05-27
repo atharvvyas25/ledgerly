@@ -8,20 +8,23 @@
 
   <!-- SEO & Social Sharing Meta Tags -->
   <meta name="title" content="Ledgerly — Sleek Expense Sharing & Personal Finance">
-  <meta name="description" content="Secure the bag, track the savings, and split expenses seamlessly with friends. An ultra-premium, sleek personal finance dashboard.">
+  <meta name="description"
+    content="Secure the bag, track the savings, and split expenses seamlessly with friends. An ultra-premium, sleek personal finance dashboard.">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ledgerly-xi-ruby.vercel.app/">
   <meta property="og:title" content="Ledgerly — Sleek Expense Sharing & Personal Finance">
-  <meta property="og:description" content="Secure the bag, track the savings, and split expenses seamlessly with friends. An ultra-premium, sleek personal finance dashboard.">
+  <meta property="og:description"
+    content="Secure the bag, track the savings, and split expenses seamlessly with friends. An ultra-premium, sleek personal finance dashboard.">
   <meta property="og:image" content="https://ledgerly-xi-ruby.vercel.app/ledgerly-preview.png">
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://ledgerly-xi-ruby.vercel.app/">
   <meta property="twitter:title" content="Ledgerly — Sleek Expense Sharing & Personal Finance">
-  <meta property="twitter:description" content="Secure the bag, track the savings, and split expenses seamlessly with friends. An ultra-premium, sleek personal finance dashboard.">
+  <meta property="twitter:description"
+    content="Secure the bag, track the savings, and split expenses seamlessly with friends. An ultra-premium, sleek personal finance dashboard.">
   <meta property="twitter:image" content="https://ledgerly-xi-ruby.vercel.app/ledgerly-preview.png">
 
   <!-- Modern Premium Typography -->
@@ -79,21 +82,25 @@
           </defs>
 
           <!-- Dotted grid reference lines inside SVG -->
-          <line x1="0" y1="75" x2="400" y2="75" stroke="var(--color-border-subtle)" stroke-width="1" stroke-dasharray="4,6" />
-          <line x1="0" y1="150" x2="400" y2="150" stroke="var(--color-border-subtle)" stroke-width="1" stroke-dasharray="4,6" />
-          <line x1="0" y1="225" x2="400" y2="225" stroke="var(--color-border-subtle)" stroke-width="1" stroke-dasharray="4,6" />
+          <line x1="0" y1="75" x2="400" y2="75" stroke="var(--color-border-subtle)" stroke-width="1"
+            stroke-dasharray="4,6" />
+          <line x1="0" y1="150" x2="400" y2="150" stroke="var(--color-border-subtle)" stroke-width="1"
+            stroke-dasharray="4,6" />
+          <line x1="0" y1="225" x2="400" y2="225" stroke="var(--color-border-subtle)" stroke-width="1"
+            stroke-dasharray="4,6" />
 
           <!-- Positive (Green) Trend Line Path -->
-          <path d="M-10,240 C50,220 90,260 140,180 C180,120 230,150 280,80 C320,30 360,60 410,20" 
-                fill="none" class="trend-line positive" />
-          <path d="M-10,240 C50,220 90,260 140,180 C180,120 230,150 280,80 C320,30 360,60 410,20 L410,300 L-10,300 Z" 
-                fill="url(#positive-glow)" class="trend-fill positive" />
+          <path d="M-10,240 C50,220 90,260 140,180 C180,120 230,150 280,80 C320,30 360,60 410,20" fill="none"
+            class="trend-line positive" />
+          <path d="M-10,240 C50,220 90,260 140,180 C180,120 230,150 280,80 C320,30 360,60 410,20 L410,300 L-10,300 Z"
+            fill="url(#positive-glow)" class="trend-fill positive" />
 
           <!-- Negative (Red) Trend Line Path -->
-          <path d="M-10,120 C60,110 100,160 160,190 C220,220 250,170 300,240 C340,290 380,260 410,285" 
-                fill="none" class="trend-line negative" />
-          <path d="M-10,120 C60,110 100,160 160,190 C220,220 250,170 300,240 C340,290 380,260 410,285 L410,300 L-10,300 Z" 
-                fill="url(#negative-glow)" class="trend-fill negative" />
+          <path d="M-10,120 C60,110 100,160 160,190 C220,220 250,170 300,240 C340,290 380,260 410,285" fill="none"
+            class="trend-line negative" />
+          <path
+            d="M-10,120 C60,110 100,160 160,190 C220,220 250,170 300,240 C340,290 380,260 410,285 L410,300 L-10,300 Z"
+            fill="url(#negative-glow)" class="trend-fill negative" />
         </svg>
 
         <!-- Pulsing glowing targets at end points / key turning points -->
@@ -815,11 +822,9 @@
             </div>
           </div>
 
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px;">
-            <button type="submit" class="submit-btn" style="margin-top: 0; height: 46px;">Create Fresh ⚡</button>
-            <button type="button" id="demo-seed-btn" class="submit-btn"
-              style="margin-top: 0; height: 46px; background-color: var(--color-card-bg-light); border: 1px solid var(--color-border-subtle); color: var(--color-text-secondary);">Demo
-              Mode 🚀</button>
+          <div style="margin-top: 10px;">
+            <button type="submit" class="submit-btn" style="margin-top: 0; height: 46px; width: 100%;">Create Fresh
+              ⚡</button>
           </div>
         </form>
       </div>
@@ -1126,28 +1131,28 @@
 
           <div class="form-group">
             <label class="form-label-title">Choose Buddy Avatar</label>
-              <div class="avatar-presets-grid" id="buddy-avatar-row"
-                style="display: flex; gap: 8px; overflow-x: auto; padding: 4px 0; scrollbar-width: none;">
-                <button type="button" class="avatar-preset-btn active" data-avatar="🦁"
-                  style="font-size: 1.3rem; background: var(--color-card-bg-light); border: 2px solid var(--color-primary-yellow); width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🦁</button>
-                <button type="button" class="avatar-preset-btn" data-avatar="🐯"
-                  style="font-size: 1.3rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🐯</button>
-                <button type="button" class="avatar-preset-btn" data-avatar="🐨"
-                  style="font-size: 1.3rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🐨</button>
-                <button type="button" class="avatar-preset-btn" data-avatar="🦄"
-                  style="font-size: 1.3rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🦄</button>
-                <button type="button" class="avatar-preset-btn" data-avatar="🐙"
-                  style="font-size: 1.3rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🐙</button>
-                <button type="button" class="avatar-preset-btn" data-avatar="🐵"
-                  style="font-size: 1.3rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🐵</button>
-                <button type="button" class="avatar-preset-btn" data-avatar="🎨"
-                  style="font-size: 1.3rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🎨</button>
-                <button type="button" class="avatar-preset-btn" data-avatar="🍔"
-                  style="font-size: 1.3rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🍔</button>
-              </div>
+            <div class="avatar-presets-grid" id="buddy-avatar-row"
+              style="display: flex; gap: 8px; overflow-x: auto; padding: 4px 0; scrollbar-width: none;">
+              <button type="button" class="avatar-preset-btn active" data-avatar="🦁"
+                style="font-size: 1.3rem; background: var(--color-card-bg-light); border: 2px solid var(--color-primary-yellow); width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🦁</button>
+              <button type="button" class="avatar-preset-btn" data-avatar="🐯"
+                style="font-size: 1.3rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🐯</button>
+              <button type="button" class="avatar-preset-btn" data-avatar="🐨"
+                style="font-size: 1.3rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🐨</button>
+              <button type="button" class="avatar-preset-btn" data-avatar="🦄"
+                style="font-size: 1.3rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🦄</button>
+              <button type="button" class="avatar-preset-btn" data-avatar="🐙"
+                style="font-size: 1.3rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🐙</button>
+              <button type="button" class="avatar-preset-btn" data-avatar="🐵"
+                style="font-size: 1.3rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🐵</button>
+              <button type="button" class="avatar-preset-btn" data-avatar="🎨"
+                style="font-size: 1.3rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🎨</button>
+              <button type="button" class="avatar-preset-btn" data-avatar="🍔"
+                style="font-size: 1.3rem; background: var(--color-card-bg-light); border: 2px solid transparent; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">🍔</button>
             </div>
+          </div>
 
-            <button type="submit" class="submit-btn" style="margin-top: 10px;">Save Buddy</button>
+          <button type="submit" class="submit-btn" style="margin-top: 10px;">Save Buddy</button>
         </form>
       </div>
     </div>

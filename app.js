@@ -9,13 +9,22 @@
  */
 
 // ==========================================================
-// --- 1. CORE APPLICATION STATE ---
+// --- 1. CORE APPLICATION STATE & MULTI-USER STORAGE HELPER ---
 // ==========================================================
 let trips = [];
 
 let activeTripId = 1;
 window.activeTripId = activeTripId;
 let tempTripMembers = [];
+
+// Reusable helper to generate user-specific storage keys
+window.getStorageKey = (key) => {
+  const currentUser = localStorage.getItem("ledgerly-current-user");
+  if (!currentUser) return `ledgerly-${key}-guest`;
+  // Sanitize key generation, using lowercase alphanumeric of user email
+  const sanitizedUser = currentUser.toLowerCase().replace(/[^a-z0-9]/g, "");
+  return `ledgerly-${key}-${sanitizedUser}`;
+};
 
 // --- DYNAMIC USER PROFILE STATE ---
 let profile = {
@@ -28,17 +37,20 @@ let profile = {
 };
 
 const saveProfileToLocalStorage = () => {
-  localStorage.setItem("ledgerly-profile", JSON.stringify(profile));
+  const key = window.getStorageKey("profile");
+  localStorage.setItem(key, JSON.stringify(profile));
   window.profile = profile;
 };
 
 // --- LOCAL STORAGE CACHING PIPELINE ---
 const saveTripsToLocalStorage = () => {
-  localStorage.setItem("ledgerly-trips", JSON.stringify(trips));
+  const key = window.getStorageKey("trips");
+  localStorage.setItem(key, JSON.stringify(trips));
 };
 
 const loadTripsFromLocalStorage = () => {
-  const storedTrips = localStorage.getItem("ledgerly-trips");
+  const key = window.getStorageKey("trips");
+  const storedTrips = localStorage.getItem(key);
   if (storedTrips) {
     try {
       trips = JSON.parse(storedTrips).filter(t => t.id !== 1 && t.id !== 3);
@@ -52,8 +64,7 @@ const loadTripsFromLocalStorage = () => {
       console.error("Failed to parse ledgerly-trips from localStorage", e);
     }
   } else {
-    // Cache the initial premium seed dataset instantly
-    saveTripsToLocalStorage();
+    trips = [];
   }
   window.trips = trips;
   window.saveTripsToLocalStorage = saveTripsToLocalStorage;
@@ -64,13 +75,24 @@ loadTripsFromLocalStorage();
 
 // --- HYDRATE PROFILE CACHE ---
 const loadProfileFromLocalStorage = () => {
-  const storedProfile = localStorage.getItem("ledgerly-profile");
+  const key = window.getStorageKey("profile");
+  const storedProfile = localStorage.getItem(key);
   if (storedProfile) {
     try {
       profile = JSON.parse(storedProfile);
     } catch (e) {
       console.error("Failed to parse ledgerly-profile", e);
     }
+  } else {
+    // Default fallback values for new profiles
+    profile = {
+      fullName: "Atharv Vyas",
+      nickName: "Atharv",
+      email: "atharv@ledgerly.com",
+      avatar: "🦊",
+      monthlyBudget: 30000,
+      weeklyLimit: 15000
+    };
   }
   window.profile = profile;
 };
@@ -245,14 +267,20 @@ const initApp = () => {
   // ==========================================================
   // --- 4. THEME SWITCHER (DARK / LIGHT TOGGLE) ---
   // ==========================================================
-  const activeSavedTheme = localStorage.getItem('ledgerly-theme') || 'dark';
-  htmlEl.setAttribute('data-theme', activeSavedTheme);
+  const applyUserTheme = () => {
+    const key = window.getStorageKey('theme');
+    const activeSavedTheme = localStorage.getItem(key) || 'dark';
+    htmlEl.setAttribute('data-theme', activeSavedTheme);
+  };
+  window.applyUserTheme = applyUserTheme;
+  applyUserTheme();
 
   themeToggleBtn.addEventListener('click', () => {
     const currentTheme = htmlEl.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     htmlEl.setAttribute('data-theme', newTheme);
-    localStorage.setItem('ledgerly-theme', newTheme);
+    const key = window.getStorageKey('theme');
+    localStorage.setItem(key, newTheme);
     showToast(`Switched to ${newTheme.toUpperCase()} mode`);
   });
 
@@ -1275,19 +1303,48 @@ const initApp = () => {
       const activeAvatarBtn = document.querySelector('#signup-avatar-row .avatar-preset-btn.active');
       const avatarVal = activeAvatarBtn ? activeAvatarBtn.getAttribute('data-avatar') : '🦊';
 
-      profile = {
-        fullName: name,
-        nickName: alias,
-        email: email,
-        avatar: avatarVal,
-        monthlyBudget: 30000,
-        weeklyLimit: 15000
-      };
+      // 1. Set dynamic session pointers
+      localStorage.setItem("ledgerly-current-user", email);
+      localStorage.setItem("ledgerly-last-user", email);
 
-      saveProfileToLocalStorage();
+      const profileKey = window.getStorageKey("profile");
+      const existingProfile = localStorage.getItem(profileKey);
+
+      if (existingProfile) {
+        // RETURNING USER: Hydrate profile state from localStorage
+        try {
+          profile = JSON.parse(existingProfile);
+        } catch (err) {
+          console.error("Failed to parse existing profile", err);
+        }
+        showToast(`Welcome back, ${profile.nickName || alias}! 🚀`);
+      } else {
+        // FIRST LOGIN: Fresh Profile
+        profile = {
+          fullName: name,
+          nickName: alias,
+          email: email,
+          avatar: avatarVal,
+          monthlyBudget: 30000,
+          weeklyLimit: 15000
+        };
+        localStorage.setItem(profileKey, JSON.stringify(profile));
+        showToast(`Welcome aboard, ${alias}! 🚀`);
+      }
+
+      // 2. Hydrate user-scoped storage pipelines
+      loadProfileFromLocalStorage();
+      loadTripsFromLocalStorage();
+      if (window.loadTransactionsFromLocalStorage) {
+        window.loadTransactionsFromLocalStorage();
+      }
+      applyUserTheme();
+
+      // 3. Re-render rendering engines in real-time
       renderProfileDetails();
-
-      showToast(`Welcome aboard, ${alias}! 🚀`);
+      if (window.renderTrips) window.renderTrips();
+      if (window.renderHomeTimeline) window.renderHomeTimeline();
+      if (window.updateHomeScreen) window.updateHomeScreen();
 
       const dock = document.querySelector('.bottom-dock');
       if (dock) dock.style.display = 'flex';
@@ -1362,27 +1419,43 @@ const initApp = () => {
   }
 
   const checkAuthGuard = () => {
-    const storedProfile = localStorage.getItem("ledgerly-profile");
-    const lastProfile = localStorage.getItem("ledgerly-last-profile");
+    const currentUser = localStorage.getItem("ledgerly-current-user");
+    const lastUser = localStorage.getItem("ledgerly-last-user");
     const dock = document.querySelector('.bottom-dock');
 
-    // Auto-login if either active session or last session profile exists!
-    const activeSession = storedProfile || lastProfile;
-
-    if (activeSession) {
-      if (!localStorage.getItem("ledgerly-profile")) {
-        localStorage.setItem("ledgerly-profile", activeSession);
+    if (currentUser) {
+      // Hydrate everything for the current logged-in user context
+      loadProfileFromLocalStorage();
+      loadTripsFromLocalStorage();
+      if (window.loadTransactionsFromLocalStorage) {
+        window.loadTransactionsFromLocalStorage();
       }
-      try {
-        profile = JSON.parse(activeSession);
-      } catch (e) {
-        console.error(e);
-      }
+      applyUserTheme();
       renderProfileDetails();
+
       window.pendingTargetView = 'home-view';
     } else {
       const restoreCard = document.getElementById("restore-session-card");
-      if (restoreCard) restoreCard.style.display = "none";
+      const restoreAlias = document.getElementById("restore-session-alias");
+
+      if (lastUser) {
+        const sanitizedLastUser = lastUser.toLowerCase().replace(/[^a-z0-9]/g, "");
+        const lastProfileStr = localStorage.getItem(`ledgerly-profile-${sanitizedLastUser}`);
+        if (lastProfileStr) {
+          try {
+            const lastProfileObj = JSON.parse(lastProfileStr);
+            if (restoreAlias) restoreAlias.textContent = `@${lastProfileObj.nickName ? lastProfileObj.nickName.toLowerCase() : 'user'}`;
+            if (restoreCard) restoreCard.style.display = "flex";
+          } catch (e) {
+            console.error("Failed to parse last profile", e);
+            if (restoreCard) restoreCard.style.display = "none";
+          }
+        } else {
+          if (restoreCard) restoreCard.style.display = "none";
+        }
+      } else {
+        if (restoreCard) restoreCard.style.display = "none";
+      }
 
       window.pendingTargetView = 'signup-view';
     }
@@ -1471,12 +1544,25 @@ const initApp = () => {
   const restoreBtn = document.getElementById('restore-session-btn');
   if (restoreBtn) {
     restoreBtn.addEventListener('click', () => {
-      const lastProfile = localStorage.getItem("ledgerly-last-profile");
-      if (lastProfile) {
+      const lastUser = localStorage.getItem("ledgerly-last-user");
+      if (lastUser) {
         try {
-          profile = JSON.parse(lastProfile);
-          saveProfileToLocalStorage();
+          localStorage.setItem("ledgerly-current-user", lastUser);
+
+          // Re-hydrate profile and user caches
+          loadProfileFromLocalStorage();
+          loadTripsFromLocalStorage();
+          if (window.loadTransactionsFromLocalStorage) {
+            window.loadTransactionsFromLocalStorage();
+          }
+          applyUserTheme();
           renderProfileDetails();
+
+          // Refresh timelines and rendering systems
+          if (window.renderTrips) window.renderTrips();
+          if (window.renderHomeTimeline) window.renderHomeTimeline();
+          if (window.updateHomeScreen) window.updateHomeScreen();
+
           showToast(`Welcome back, ${profile.nickName || 'User'}! 👋`);
 
           const dock = document.querySelector('.bottom-dock');
@@ -1489,122 +1575,6 @@ const initApp = () => {
     });
   }
 
-  // Bind Explore with Demo Data Trigger
-  const demoSeedBtn = document.getElementById('demo-seed-btn');
-  if (demoSeedBtn) {
-    demoSeedBtn.addEventListener('click', () => {
-      // 1. Generate Demo Profile
-      profile = {
-        fullName: "Atharv Vyas",
-        nickName: "Atharv",
-        email: "atharv@ledgerly.com",
-        avatar: "🦊",
-        monthlyBudget: 30000,
-        weeklyLimit: 15000
-      };
-      saveProfileToLocalStorage();
-
-      // 2. Seed beautiful dynamic transactions
-      const now = new Date();
-      const demoTx = [
-        {
-          id: 1,
-          title: "Monthly Salary Credit",
-          amount: 25000,
-          type: "income",
-          category: "Salary",
-          date: new Date(now.getTime() - 2 * 24 * 60 * 60 * 1000 - 4 * 60 * 60 * 1000), // 2 days ago
-          notes: "Company salary credit"
-        },
-        {
-          id: 2,
-          title: "Apartment Rent",
-          amount: 8000,
-          type: "expense",
-          category: "Bills",
-          date: new Date(now.getTime() - 1 * 24 * 60 * 60 * 1000 - 2 * 60 * 60 * 1000), // yesterday
-          notes: "Flat rent payment"
-        },
-        {
-          id: 3,
-          title: "Gourmet Pizza & Coffee",
-          amount: 450,
-          type: "expense",
-          category: "Food",
-          date: new Date(now.getTime() - 2 * 60 * 60 * 1000), // today, 2 hrs ago
-          notes: "Dinner out with friends"
-        }
-      ];
-      localStorage.setItem("ledgerly-transactions", JSON.stringify(demoTx));
-      if (window.loadTransactionsFromLocalStorage) {
-        window.loadTransactionsFromLocalStorage();
-      }
-
-      // 3. Seed beautiful dynamic trips
-      const demoTrips = [
-        {
-          id: 101,
-          title: "Goa Getaway 🌴",
-          destination: "Goa, India",
-          startDate: "12 May",
-          endDate: "18 May",
-          type: "Friends",
-          cover: "default-banner-gradient-1",
-          status: "ongoing",
-          members: [
-            { id: 1, name: "Atharv", initials: "AT", color: "#FBB700" },
-            { id: 2, name: "Rahul", initials: "RA", color: "#10B981" },
-            { id: 3, name: "Neha", initials: "NE", color: "#EF4444" },
-            { id: 4, name: "Rohit", initials: "RO", color: "#8B5CF6" }
-          ],
-          expenses: [
-            {
-              id: 201,
-              title: "Resort Stay Booking",
-              amount: 18000,
-              category: "Hotel",
-              paidBy: "Rahul",
-              personal: false,
-              date: new Date(now.getTime() - 3 * 24 * 60 * 60 * 1000)
-            },
-            {
-              id: 202,
-              title: "Beachside Shack Seafood",
-              amount: 3200,
-              category: "Food",
-              paidBy: "Atharv",
-              personal: false,
-              date: new Date(now.getTime() - 2 * 24 * 60 * 60 * 1000)
-            },
-            {
-              id: 203,
-              title: "Cab Fare to Airport",
-              amount: 1500,
-              category: "Travel",
-              paidBy: "Neha",
-              personal: false,
-              date: new Date(now.getTime() - 1 * 24 * 60 * 60 * 1000)
-            }
-          ]
-        }
-      ];
-      localStorage.setItem("ledgerly-trips", JSON.stringify(demoTrips));
-      if (window.loadTripsFromLocalStorage) {
-        window.loadTripsFromLocalStorage();
-      }
-
-      // Refresh rendering systems
-      renderProfileDetails();
-      if (window.renderTrips) window.renderTrips();
-      if (window.renderHomeTimeline) window.renderHomeTimeline();
-      if (window.updateHomeScreen) window.updateHomeScreen();
-
-      showToast("Logged in to Demo Mode! 🚀");
-      const dock = document.querySelector('.bottom-dock');
-      if (dock) dock.style.display = 'flex';
-      navigateTo('home-view');
-    });
-  }
 
   // Helper to wire click event listeners for avatar selector presets
   const setupAvatarPickers = () => {
