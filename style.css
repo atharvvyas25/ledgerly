@@ -2969,3 +2969,294 @@ body {
   color: var(--color-charcoal) !important;
   transform: scale(1.04);
 }
+
+/* =============================================================
+   INTRO / SPLASH SCREEN VIEW STYLES
+   ============================================================= */
+
+#intro-view {
+  background-color: var(--color-app-bg);
+  z-index: 10000; /* Ensure it stays on top of everything else during intro */
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px 24px;
+}
+
+#intro-view.active {
+  display: flex;
+}
+
+/* Background Glow Blobs */
+.intro-bg-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.glow-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.12;
+  transition: opacity 0.5s ease;
+}
+
+[data-theme="light"] .glow-blob {
+  opacity: 0.06;
+}
+
+.blob-1 {
+  top: -10%;
+  left: -20%;
+  width: 260px;
+  height: 260px;
+  background-color: var(--color-primary-yellow);
+  animation: float-blob-1 25s infinite alternate ease-in-out;
+}
+
+.blob-2 {
+  bottom: -5%;
+  right: -25%;
+  width: 290px;
+  height: 290px;
+  background-color: var(--color-success);
+  animation: float-blob-2 30s infinite alternate ease-in-out;
+}
+
+@keyframes float-blob-1 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(30px, 50px) scale(1.15); }
+}
+
+@keyframes float-blob-2 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-40px, -30px) scale(1.1); }
+}
+
+/* Scroll and Center Layout */
+.intro-body-scroll {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  width: 100%;
+}
+
+.intro-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Logo and Branding Header */
+.intro-logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 8px;
+}
+
+.intro-logo-icon-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro-logo-icon {
+  width: 76px;
+  height: 76px;
+  border-radius: 24px;
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-ambient);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.intro-logo-icon:hover {
+  transform: scale(1.05) rotate(3deg);
+}
+
+.intro-title-wrap {
+  overflow: hidden;
+  padding: 4px 10px;
+}
+
+.intro-logo-text {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, var(--color-text-primary) 0%, rgba(248, 247, 244, 0.55) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="light"] .intro-logo-text {
+  background: linear-gradient(135deg, var(--color-text-primary) 0%, rgba(15, 15, 15, 0.55) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.intro-tagline-wrap {
+  overflow: hidden;
+  padding: 2px 10px;
+}
+
+.intro-tagline {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  max-width: 250px;
+  line-height: 1.45;
+}
+
+/* Footer Section & Enter Button */
+.intro-footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+  margin-top: 24px;
+}
+
+.intro-enter-btn {
+  background-color: var(--color-primary-yellow);
+  background-image: linear-gradient(135deg, var(--color-primary-yellow), var(--color-soft-yellow));
+  border: none;
+  height: 52px;
+  border-radius: 26px;
+  width: 100%;
+  max-width: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--color-charcoal);
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(251, 183, 0, 0.3);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.intro-enter-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(251, 183, 0, 0.45);
+}
+
+.intro-enter-btn:active {
+  transform: translateY(0);
+}
+
+.intro-enter-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.intro-enter-btn:hover svg {
+  transform: translateX(4px);
+}
+
+/* Premium Typography Mask & Reveal Animations */
+.animate-logo-reveal {
+  animation: logo-reveal-in 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-typography {
+  animation: tracking-in-expand 1.5s cubic-bezier(0.16, 1, 0.3, 1) both,
+             slide-up-reveal 1.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-tagline-reveal {
+  animation: tagline-reveal-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.6s;
+}
+
+.intro-footer.animate-fade-up-slow {
+  animation: button-reveal-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 1.1s;
+}
+
+@keyframes logo-reveal-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) translateY(20px);
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.35em;
+    filter: blur(12px);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    letter-spacing: -0.03em;
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up-reveal {
+  0% {
+    transform: translateY(102%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes tagline-reveal-in {
+  0% {
+    opacity: 0;
+    transform: translateY(102%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes button-reveal-in {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Cross-fade Transition */
+#intro-view.fade-out {
+  display: flex !important; /* keep layout active while fading */
+  opacity: 0;
+  transform: translateY(-20px) scale(0.97);
+  filter: blur(8px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}

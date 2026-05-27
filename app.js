@@ -1378,17 +1378,58 @@ const initApp = () => {
       } catch (e) {
         console.error(e);
       }
-      if (dock) dock.style.display = 'flex';
       renderProfileDetails();
-      navigateTo('home-view');
+      window.pendingTargetView = 'home-view';
     } else {
-      if (dock) dock.style.display = 'none';
-
       const restoreCard = document.getElementById("restore-session-card");
       if (restoreCard) restoreCard.style.display = "none";
 
-      navigateTo('signup-view');
+      window.pendingTargetView = 'signup-view';
     }
+
+    // Hide dock by default during the intro screen
+    if (dock) dock.style.display = 'none';
+    navigateTo('intro-view');
+
+    // Set transition triggers for entering the app
+    const introEnterBtn = document.getElementById('intro-enter-btn');
+    let introTransitionTriggered = false;
+
+    const triggerAppEntry = () => {
+      if (introTransitionTriggered) return;
+      introTransitionTriggered = true;
+
+      const introView = document.getElementById('intro-view');
+      if (introView) {
+        introView.classList.add('fade-out');
+      }
+
+      const targetView = window.pendingTargetView || 'signup-view';
+
+      // Standard view transition
+      navigateTo(targetView);
+
+      // Restore bottom dock if entering home dashboard
+      if (targetView === 'home-view') {
+        if (dock) dock.style.display = 'flex';
+      } else {
+        if (dock) dock.style.display = 'none';
+      }
+
+      // Cleanup intro screen after transition completes (600ms)
+      setTimeout(() => {
+        if (introView) {
+          introView.classList.remove('active', 'fade-out');
+        }
+      }, 600);
+    };
+
+    if (introEnterBtn) {
+      introEnterBtn.addEventListener('click', triggerAppEntry);
+    }
+
+    // Auto-transition safety timer of 2.5 seconds (2500ms)
+    setTimeout(triggerAppEntry, 2500);
   };
 
   // Bind Restore Last Session Trigger
