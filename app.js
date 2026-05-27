@@ -1391,8 +1391,7 @@ const initApp = () => {
     if (dock) dock.style.display = 'none';
     navigateTo('intro-view');
 
-    // Set transition triggers for entering the app
-    const introEnterBtn = document.getElementById('intro-enter-btn');
+    // Set active transition triggers for entering the dashboard
     let introTransitionTriggered = false;
 
     const triggerAppEntry = () => {
@@ -1416,20 +1415,56 @@ const initApp = () => {
         if (dock) dock.style.display = 'none';
       }
 
-      // Cleanup intro screen after transition completes (600ms)
+      // Cleanup intro screen after transition completes (700ms)
       setTimeout(() => {
         if (introView) {
           introView.classList.remove('active', 'fade-out');
         }
-      }, 600);
+      }, 700);
     };
 
-    if (introEnterBtn) {
-      introEnterBtn.addEventListener('click', triggerAppEntry);
-    }
+    // Standard resilient transition fallback (always transitions after 2.8s)
+    const transitionTimer = setTimeout(triggerAppEntry, 2800);
 
-    // Auto-transition safety timer of 2.5 seconds (2500ms)
-    setTimeout(triggerAppEntry, 2500);
+    try {
+      // ==========================================================
+      // --- GSAP PRE-RENDER ELASTIC ENHANCEMENT ---
+      // ==========================================================
+      if (typeof gsap !== 'undefined') {
+        // Staggered luxury pop-in for the financial tickers and node points
+        const tickers = document.querySelectorAll('.ticker-badge');
+        const nodes = document.querySelectorAll('.pulsing-node');
+
+        if (tickers.length > 0) {
+          gsap.set(tickers, { scale: 0, opacity: 0 });
+          gsap.to(tickers, {
+            scale: 1,
+            opacity: 1,
+            duration: 1.4,
+            delay: 1.6,
+            stagger: 0.3,
+            ease: "back.out(1.7)"
+          });
+        }
+
+        if (nodes.length > 0) {
+          gsap.set(nodes, { scale: 0, opacity: 0 });
+          gsap.to(nodes, {
+            scale: 1,
+            opacity: 1,
+            duration: 1,
+            delay: 1.4,
+            stagger: 0.2,
+            ease: "elastic.out(1, 0.75)"
+          });
+        }
+      } else {
+        console.warn("GSAP not loaded. Relying entirely on solid CSS animation triggers.");
+      }
+    } catch (err) {
+      console.error("Intro animation failed to initialize, falling back gracefully: ", err);
+      triggerAppEntry();
+    }
   };
 
   // Bind Restore Last Session Trigger

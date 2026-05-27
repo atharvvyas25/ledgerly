@@ -30,6 +30,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
 
+  <!-- Animation Engine Dependencies -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
   <!-- CSS Stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
@@ -49,41 +52,88 @@
         <div class="glow-blob blob-2"></div>
       </div>
 
+      <!-- Financial Grid Overlay -->
+      <div class="market-grid-overlay"></div>
+
+      <!-- Candlestick Visualizer Group -->
+      <div class="candle-visualizer">
+        <div class="market-candle green size-1 position-1"></div>
+        <div class="market-candle red size-2 position-2"></div>
+        <div class="market-candle green size-3 position-3"></div>
+        <div class="market-candle red size-1 position-4"></div>
+        <div class="market-candle green size-2 position-5"></div>
+      </div>
+
+      <!-- Sharemarket Path SVG Graph -->
+      <div class="svg-graph-container">
+        <svg viewBox="0 0 400 300" preserveAspectRatio="none" class="market-svg">
+          <defs>
+            <linearGradient id="positive-glow" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="var(--color-success)" stop-opacity="0.22" />
+              <stop offset="100%" stop-color="var(--color-success)" stop-opacity="0" />
+            </linearGradient>
+            <linearGradient id="negative-glow" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="var(--color-danger)" stop-opacity="0.18" />
+              <stop offset="100%" stop-color="var(--color-danger)" stop-opacity="0" />
+            </linearGradient>
+          </defs>
+
+          <!-- Dotted grid reference lines inside SVG -->
+          <line x1="0" y1="75" x2="400" y2="75" stroke="var(--color-border-subtle)" stroke-width="1" stroke-dasharray="4,6" />
+          <line x1="0" y1="150" x2="400" y2="150" stroke="var(--color-border-subtle)" stroke-width="1" stroke-dasharray="4,6" />
+          <line x1="0" y1="225" x2="400" y2="225" stroke="var(--color-border-subtle)" stroke-width="1" stroke-dasharray="4,6" />
+
+          <!-- Positive (Green) Trend Line Path -->
+          <path d="M-10,240 C50,220 90,260 140,180 C180,120 230,150 280,80 C320,30 360,60 410,20" 
+                fill="none" class="trend-line positive" />
+          <path d="M-10,240 C50,220 90,260 140,180 C180,120 230,150 280,80 C320,30 360,60 410,20 L410,300 L-10,300 Z" 
+                fill="url(#positive-glow)" class="trend-fill positive" />
+
+          <!-- Negative (Red) Trend Line Path -->
+          <path d="M-10,120 C60,110 100,160 160,190 C220,220 250,170 300,240 C340,290 380,260 410,285" 
+                fill="none" class="trend-line negative" />
+          <path d="M-10,120 C60,110 100,160 160,190 C220,220 250,170 300,240 C340,290 380,260 410,285 L410,300 L-10,300 Z" 
+                fill="url(#negative-glow)" class="trend-fill negative" />
+        </svg>
+
+        <!-- Pulsing glowing targets at end points / key turning points -->
+        <!-- Positive target at the peak -->
+        <div class="pulsing-node positive" style="left: 78%; top: 22%;">
+          <span class="pulse-ring"></span>
+          <span class="pulse-dot"></span>
+          <!-- Glassmorphic floating ticker badge -->
+          <div class="ticker-badge positive">
+            <span class="ticker-arrow">↑</span>
+            <span class="ticker-val">+24.8%</span>
+            <span class="ticker-label">Wealth Growth</span>
+          </div>
+        </div>
+
+        <!-- Negative target at the dip -->
+        <div class="pulsing-node negative" style="left: 70%; top: 76%;">
+          <span class="pulse-ring"></span>
+          <span class="pulse-dot"></span>
+          <!-- Glassmorphic floating ticker badge -->
+          <div class="ticker-badge negative">
+            <span class="ticker-arrow">↓</span>
+            <span class="ticker-val">-11.5%</span>
+            <span class="ticker-label">Expenses Tracker</span>
+          </div>
+        </div>
+      </div>
+
       <!-- Center Logo & Branding Content -->
       <div class="intro-body-scroll">
         <div class="intro-content">
           <!-- Logo & Brand Header with Premium Typography Reveal -->
           <div class="intro-logo-container">
-            <div class="intro-logo-icon-wrap animate-logo-reveal">
-              <div class="intro-logo-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
-                  stroke="var(--color-primary-yellow)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="12" y1="1" x2="12" y2="23"></line>
-                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                </svg>
-              </div>
-            </div>
             <div class="intro-title-wrap">
-              <h1 class="intro-logo-text animate-typography">Ledgerly</h1>
+              <h1 class="intro-logo-text" id="split-title">Ledgerly</h1>
             </div>
           </div>
-
-          <div class="intro-tagline-wrap">
-            <p class="intro-tagline animate-tagline-reveal">Modern expense tracking for everyday life.</p>
-          </div>
+          <!-- High-end luxury subtext -->
+          <p class="intro-subtitle">Secure the bag • Track the savings</p>
         </div>
-      </div>
-
-      <!-- Footer & Enter Button -->
-      <div class="intro-footer animate-fade-up-slow delay-3">
-        <button type="button" class="intro-enter-btn" id="intro-enter-btn">
-          <span>Enter Ledgerly</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
-        </button>
       </div>
     </div>
 
