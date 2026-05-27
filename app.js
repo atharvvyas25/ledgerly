@@ -1,5 +1,5 @@
 /**
- * Ledgerly — Premium UI Frontend Template
+ * Ledgerly — Sleek Expense Sharing & Personal Finance
  * Core Screen Navigation & Interactions Script
  * 
  * This file is highly structured, fully reactive, and optimized.
